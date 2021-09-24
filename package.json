@@ -15,6 +15,12 @@
 	"categories": [
 		"Other"
 	],
+	"tags": [
+		"split",
+		"html",
+		"css",
+		"javascript"
+	],
 	"activationEvents": [
         "onCommand:html-split.splitFile"
 	],
