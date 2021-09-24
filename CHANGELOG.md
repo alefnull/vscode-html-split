@@ -2,6 +2,12 @@
 
 All notable changes to the "html-split" extension will be documented in this file.
 
+## [1.0.2] - 2021-09-24
+
+### Changes
+
+- [#1] Added keywords to extension manifest to allow for easier discovery on the marketplace.
+
 ## [1.0.1] - 2021-09-23
 
 ### Bug Fixes

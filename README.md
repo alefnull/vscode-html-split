@@ -20,10 +20,10 @@ None at this time.
 
 ## Release Notes
 
-## [1.0.1] - 2021-09-24
+## [1.0.2] - 2021-09-24
 
-### Bug Fixes
+### Changes
 
-- [#1] Fixed a bug related to inserting text into new files when [Vim](https://marketplace.visualstudio.com/items?itemName=vscodevim.vim) extension was installed and in "Normal" mode. (as a consequence, newly created files will not have filenames associated with them.)
+- [#1] Added keywords to extension manifest to allow for easier discovery on the marketplace.
 
 For a full list of changes, see [CHANGELOG.md](CHANGELOG.md).
