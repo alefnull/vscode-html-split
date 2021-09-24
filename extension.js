@@ -15,16 +15,16 @@ function activate(context) {
 
 		// if current file is not an html file, return and show an error message
 		if (targetEditor.document.languageId !== 'html') {
-			vscode.window.showErrorMessage('The current file is not an html file.');
+			vscode.window.showErrorMessage('The target file is not an html file.');
 			return;
 		}
 
-		// get the text of the active editor
+		// get the active editor's contents
 		let htmlText = targetEditor.document.getText();
 
 		// if the text is empty, return and show an error message
 		if (htmlText.length === 0) {
-			vscode.window.showErrorMessage('The current file is empty.');
+			vscode.window.showErrorMessage('The target file is empty.');
 			return;
 		}
 		
@@ -65,35 +65,27 @@ function activate(context) {
 		// remove the empty lines from the html
 		htmlText = htmlText.replace(/^\s*[\r\n]/gm, '');
 
-		// replace the original html file with the new html file
-		await targetEditor.edit(editBuilder => {
-			editBuilder.delete(new vscode.Range(0, 0, targetEditor.document.lineCount, 0));
-			editBuilder.insert(new vscode.Position(0, 0), htmlText);
-		});
-
-		// create a new file with the css text, with the file name style.css
+		// open a new file containing the css
 		if (cssText.length > 0) {
-			let cssFile = vscode.Uri.parse('untitled:style.css');
-			await vscode.workspace.openTextDocument(cssFile);
-			await vscode.window.showTextDocument(cssFile);
-			await vscode.window.activeTextEditor.edit(editBuilder => {
-				editBuilder.delete(new vscode.Range(0, 0, vscode.window.activeTextEditor.document.lineCount, vscode.window.activeTextEditor.document.lineAt(vscode.window.activeTextEditor.document.lineCount - 1).range.end.character));
-				editBuilder.insert(new vscode.Position(0, 0), cssText);
-			});
-			await vscode.commands.executeCommand('editor.action.formatDocument');
+			let cssEditor = await vscode.workspace.openTextDocument({ content: cssText, language: 'css' });
+			await vscode.window.showTextDocument(cssEditor, { preview: false });
+			// run the default formatter for the css file
+			await vscode.commands.executeCommand('editor.action.format');
 		}
 
-		// create a new file with the js text
+		// open a new file containing the js
 		if (jsText.length > 0) {
-			let jsFile = vscode.Uri.parse('untitled:script.js');
-			await vscode.workspace.openTextDocument(jsFile);
-			await vscode.window.showTextDocument(jsFile);
-			await vscode.window.activeTextEditor.edit(editBuilder => {
-				editBuilder.delete(new vscode.Range(0, 0, vscode.window.activeTextEditor.document.lineCount, vscode.window.activeTextEditor.document.lineAt(vscode.window.activeTextEditor.document.lineCount - 1).range.end.character));
-				editBuilder.insert(new vscode.Position(0, 0), jsText);
-			});
-			await vscode.commands.executeCommand('editor.action.formatDocument');
+			let jsEditor = await vscode.workspace.openTextDocument({ content: jsText, language: 'javascript' });
+			await vscode.window.showTextDocument(jsEditor, { preview: false });
+			// run the default formatter for the js file
+			await vscode.commands.executeCommand('editor.action.format');
 		}
+
+		// open a new file containing the html
+		let htmlEditor = await vscode.workspace.openTextDocument({ content: htmlText, language: 'html' });
+		await vscode.window.showTextDocument(htmlEditor, { preview: false });
+		// run the default formatter for the html file
+		await vscode.commands.executeCommand('editor.action.format');
 
 		// show a success message
 		vscode.window.showInformationMessage('Target HTML file split into HTML, CSS, and JS files!');
