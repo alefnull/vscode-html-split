@@ -10,7 +10,7 @@ No settings currently exist for this extension.
 
 ## Known Issues
 
-- HTML Split does not currently work if you have the [Vim]() extension installed, because it actually "inserts" the text into the editor, so if you're in normal mode, the text won't be sent to the editor correctly. This is something I just discovered for myself after publishing the initial version of the extension. I'll be looking into this as soon as I have the time.
+- HTML Split does not currently work if you have the [Vim](https://marketplace.visualstudio.com/items?itemName=vscodevim.vim) extension installed, because it actually "inserts" the text into the editor, so if you're in normal mode, the text won't be sent to the editor correctly. This is something I just discovered for myself after publishing the initial version of the extension. I'll be looking into this as soon as I have the time.
 
 ---
 
