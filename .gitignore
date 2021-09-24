@@ -6,6 +6,7 @@
 ### User Specified ###
 package-lock.json
 vsc-extension-quickstart.md
+.markdownlint.json
 
 ### Node ###
 # Logs
