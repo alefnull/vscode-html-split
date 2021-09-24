@@ -3,7 +3,7 @@
 	"publisher": "alefnull",
 	"displayName": "HTML Split",
 	"description": "Splits the CSS and JS out of an HTML file into their own files, and adds references to the HTML file.",
-	"version": "1.0.1",
+	"version": "1.0.2",
 	"icon": "hs-icon.png",
 	"repository": {
 		"type": "git",
